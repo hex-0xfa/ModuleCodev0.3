@@ -41,6 +41,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern ADC_HandleTypeDef hadc;
 extern I2C_HandleTypeDef hi2c1;
 
 /******************************************************************************/
@@ -157,6 +158,7 @@ void EXTI4_15_IRQHandler(void)
 		I2C_Slave_Transreceiver_IT_Deinitialize(&hi2c1);
 	}
 	//处理LPMode中断
+	
   if(IsLPMode() == 0)                                      //如果为0
 	{
 		if(IsLPMode_Overriade() == 0)                          //如果未覆盖
@@ -171,6 +173,8 @@ void EXTI4_15_IRQHandler(void)
 		  LowPowerMode();                                      //低功率
 		}
 	}
+	
+	
   /* USER CODE END EXTI4_15_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
@@ -182,20 +186,32 @@ void EXTI4_15_IRQHandler(void)
 }
 
 /**
+* @brief This function handles ADC1, COMP1 and COMP2 interrupts (COMP interrupts through EXTI lines 21 and 22).
+*/
+void ADC1_COMP_IRQHandler(void)
+{
+  /* USER CODE BEGIN ADC1_COMP_IRQn 0 */
+
+  /* USER CODE END ADC1_COMP_IRQn 0 */
+  HAL_ADC_IRQHandler(&hadc);
+  /* USER CODE BEGIN ADC1_COMP_IRQn 1 */
+
+  /* USER CODE END ADC1_COMP_IRQn 1 */
+}
+
+/**
 * @brief This function handles I2C1 event global interrupt / I2C1 wake-up interrupt through EXTI line 23.
 */
 void I2C1_IRQHandler(void)
 {
   /* USER CODE BEGIN I2C1_IRQn 0 */
-
+  //User_Slave_I2C_EV_IRQHandler(&hi2c1);
   /* USER CODE END I2C1_IRQn 0 */
   if (hi2c1.Instance->ISR & (I2C_FLAG_BERR | I2C_FLAG_ARLO | I2C_FLAG_OVR)) {
-	  //处理错误中断
     HAL_I2C_ER_IRQHandler(&hi2c1);
   } else {
+		User_Slave_I2C_EV_IRQHandler(&hi2c1);
     //HAL_I2C_EV_IRQHandler(&hi2c1);
-    //处理事件中断
-		  User_Slave_I2C_EV_IRQHandler(&hi2c1);
   }
   /* USER CODE BEGIN I2C1_IRQn 1 */
 

@@ -39,4 +39,6 @@ void Tx_Pin_Disable(void);                              //失能Tx-dis pin
 void Tx_Pin_Enable(void);                               //使能Tx-dis pin
 uint8_t GetTx_Pin_DIS(I2C_HandleTypeDef *hi2c);         //检测Tx-dis pin
 
+//关于ADC的函数
+void ADC_Update(void);               //更新所有ADC的值
 #endif

@@ -63,3 +63,24 @@ void ClearLatchTxfault(void)                         //清空 Tx Fault
   Latch_Tx3_Fault = 0;
   Latch_Tx4_Fault = 0;
 }
+
+void WakeUpTxCDR_DRIVER(void)                                                             //使TxCDR和Driver从reset模式变为正常工作模式
+{
+	HAL_GPIO_WritePin(Tx_Reset_GPIO_Port, Tx_Reset_Pin, GPIO_PIN_SET);
+}
+
+void WakeUpRxCDR(void)                                                                    //使RxCDR从reset模式变为正常工作模式
+{
+	HAL_GPIO_WritePin(Rx_Reset_GPIO_Port, Rx_Reset_Pin, GPIO_PIN_SET);
+}
+
+void DisableTxCDR_DRIVER(void)                                                            //让TxCDR和Driver进入reset模式
+{
+	HAL_GPIO_WritePin(Tx_Reset_GPIO_Port, Tx_Reset_Pin, GPIO_PIN_RESET);
+}
+	
+void DisableRxCDR(void)                                                                   //让RxCDR进入reset模式
+{
+	HAL_GPIO_WritePin(Rx_Reset_GPIO_Port, Rx_Reset_Pin, GPIO_PIN_RESET);
+}
+

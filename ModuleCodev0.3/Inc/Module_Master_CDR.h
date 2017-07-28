@@ -8,23 +8,25 @@
 #include "stm32l0xx_hal.h"
 
 //各路编号
-#define Tx0   0
-#define Tx1   1
-#define Tx2   2
-#define Tx3   3
-#define Rx0   4
-#define Rx1   5
-#define Rx2   6
-#define Rx3   7
-#define ChAll 8
+#define Tx1   0
+#define Tx2   1
+#define Tx3   2
+#define Tx4   3
+#define Rx1   4
+#define Rx2   5
+#define Rx3   6
+#define Rx4   7
+#define TxAll 8
+#define RxAll 9
+#define ChAll 10
 
 //使能，失能
-#define Value_Reset 0
-#define Value_Set   1
+#define VALUE_RESET 0
+#define VALUE_SET   1
 
 //调试控制
-#define Precursor  0
-#define Postcurosr 1
+#define PRECURSOR  0
+#define POSTCURSOR 1
 
 //芯片常量
 #define GN2104_TX_I2C_ADDRESS                 0x24                                  //Tx CDR 地址
@@ -39,6 +41,14 @@ uint8_t GetLatchTxFault(void);                          //获取 Tx Fault
 void ClearLatchTxfault(void);                           //清空 Tx Fault
 
 //以下函数还未实现，将会在调试的时候（v0.3）进行处理
+
+void WakeUpTxCDR_DRIVER(void);                                                             //使TxCDR和Driver从reset模式变为正常工作模式
+
+void WakeUpRxCDR(void);                                                                    //使RxCDR从reset模式变为正常工作模式
+
+void DisableTxCDR_DRIVER(void);                                                            //让TxCDR和Driver进入reset模式
+	
+void DisableRxCDR(void);                                                                   //让RxCDR进入reset模式
 
 void PowerUp(I2C_HandleTypeDef *hi2c, uint8_t channel);                                    //打开总线和模拟电路电源
 

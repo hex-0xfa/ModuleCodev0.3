@@ -124,6 +124,7 @@ int main(void)
 		//检查调制电压                                 （可选）
 		//检查各条路上的偏执和调制电流是否正常         （可选）
   /* USER CODE END WHILE */
+
   /* USER CODE BEGIN 3 */
 
   }
