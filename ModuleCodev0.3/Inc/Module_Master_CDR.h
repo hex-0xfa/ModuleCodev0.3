@@ -7,19 +7,6 @@
 #include "stdint.h"
 #include "stm32l0xx_hal.h"
 
-//各路编号
-#define Tx1   0
-#define Tx2   1
-#define Tx3   2
-#define Tx4   3
-#define Rx1   4
-#define Rx2   5
-#define Rx3   6
-#define Rx4   7
-#define TxAll 8
-#define RxAll 9
-#define ChAll 10
-
 //使能，失能
 #define VALUE_RESET 0
 #define VALUE_SET   1
@@ -83,5 +70,19 @@ uint8_t GetRxLOSCDR(I2C_HandleTypeDef *hi2c, uint8_t channel);                  
 uint8_t GetTxLOLCDR(I2C_HandleTypeDef *hi2c, uint8_t channel);                             //读取TxLOL
 
 uint8_t GetRxLOLCDR(I2C_HandleTypeDef *hi2c, uint8_t channel);                             //读取RxLOL
+
+uint8_t GetRxLOLPin(void);                                                                 //读取RxLOL Pin
+
+uint8_t GetRxLOSPin(void);                                                                 //读取RxLOS Pin
+
+uint8_t GetTxLOSLOLPin(void);                                                              //读取TxLOSLOL Pin
+
+void AssertRxLOL(void);                                                                    //调查具体是哪一条线失去时钟（Rx）
+
+void AssertRxLOS(void);                                                                    //调查具体是那一条线失去信号（Rx）
+
+void AssertTxLOSLOL(void);                                                                 //调查具体是那一条线失去信号或时钟（Tx）
+
+
 
 #endif

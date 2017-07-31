@@ -27,4 +27,19 @@
 
 #define CLEAR_HIGHER_BIT                      0x00FF                      //清楚十六位的上面八位
 
+//各路编号
+#define Tx1   0
+#define Tx2   1
+#define Tx3   2
+#define Tx4   3
+#define Rx1   4
+#define Rx2   5
+#define Rx3   6
+#define Rx4   7
+#define TxAll 8
+#define RxAll 9
+#define ChAll 10
+
+#define I2C_WAIT_TIME 2
+
 #endif

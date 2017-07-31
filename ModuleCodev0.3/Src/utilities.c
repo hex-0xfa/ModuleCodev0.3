@@ -16,10 +16,10 @@
 #define Vadc          3.3                
 #define V25           1774.0
 #define AVG_SLOPE     0.0043
-#define TEMP_ALARM_VALUE 0xFFFF                         //警告温度
+#define TEMP_ALARM_VALUE 0xFFFF                             //警告温度
 
 //内部变量
-static uint8_t latch_temp_high_alarm = 0x00;                           //高温预警位
+static uint8_t latch_temp_high_alarm = 0x00;                        //高温预警位
 static uint16_t RSSI1_Value          = 0x0000;                      //RSSI1 ADC值
 static uint16_t RSSI2_Value          = 0x0000;                      //RSSI2 ADC值
 static uint16_t RSSI3_Value          = 0x0000;                      //RSSI3 ADC值
@@ -27,7 +27,7 @@ static uint16_t IBias_Mon_Value      = 0x0000;                      //IBias_Mon 
 static uint16_t RSSI4_Value          = 0x0000;                      //RSSI4 ADC值
 static uint16_t Temp_Reg_Value       = 0x0000;                      //温度  ADC值
 static uint8_t ADC_Sequence          = 0x00;                        //转换到了第几个ADC
-
+static uint8_t ADC_Complete          = 0x00;                        //指示转换完成
 
 //清空缓冲区
 void EmptyBuffer(uint8_t* a)
@@ -40,18 +40,12 @@ void EmptyBuffer(uint8_t* a)
 }
 
 //获取温度
-uint16_t GetTemperature (ADC_HandleTypeDef *hadc)
+uint16_t GetTemperature(void)
 {
-	uint32_t TemBuffer = 0x00000000;
-	HAL_ADC_Start(hadc);
-	HAL_Delay(500);
-	TemBuffer = HAL_ADC_GetValue(hadc);
-	HAL_ADC_Stop(hadc);
-  return ((uint16_t)(TemBuffer & 0x0000FFFF));
-	//温度转换（未校准）
-	//double Measured_Temperature = ((V25 - (double)TemBuffer)*(Vadc/4095.0))/(AVG_SLOPE)-25.0;
-	//uint16_t temp = ((uint16_t)(Measured_Temperature*256.0));
-	//return temp;
+	ADC_Update();                                           //更新ADC数据
+	while(ADC_Complete == 0){}                              //等待完成
+	ADC_Complete = 0;                                       //重置完成位
+  return Temp_Reg_Value;                                  //需要做一个变换
 }
 
 //设置高温警告
@@ -204,6 +198,46 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	{
 		ADC_Sequence = 0;                                      //将转换值的位置重置
 		HAL_ADC_Stop_IT(hadc);                                 //停止中断转换
+		ADC_Complete = 1;                                      //转换完成
 	}
 	return;
+}
+
+//获取RSSI电压的函数
+uint16_t  GetRSSI1(void)                                  //获取RSSI1
+{
+	ADC_Update();                                           //更新ADC数据
+	while(ADC_Complete == 0){}                              //等待完成
+	ADC_Complete = 0;                                       //重置完成位
+  return RSSI1_Value;                                     //需要做一个变换
+}
+uint16_t  GetRSSI2(void)                                  //获取RSSI2
+{
+	ADC_Update();                                           //更新ADC数据
+	while(ADC_Complete == 0){}                              //等待完成
+	ADC_Complete = 0;                                       //重置完成位
+  return RSSI2_Value;                                     //需要做一个变换
+}
+uint16_t  GetRSSI3(void)                                  //获取RSSI3
+{
+	ADC_Update();                                           //更新ADC数据
+	while(ADC_Complete == 0){}                              //等待完成
+	ADC_Complete = 0;                                       //重置完成位
+  return RSSI3_Value;                                     //需要做一个变换
+}
+uint16_t  GetRSSI4(void)                                  //获取RSSI4
+{
+	ADC_Update();                                           //更新ADC数据
+	while(ADC_Complete == 0){}                              //等待完成
+	ADC_Complete = 0;                                       //重置完成位
+  return RSSI4_Value;                                     //需要做一个变换
+}
+
+//获取IBias电压的函数
+uint16_t  GetIBias(void)
+{
+	ADC_Update();                                           //更新ADC数据
+	while(ADC_Complete == 0){}                              //等待完成
+	ADC_Complete = 0;                                       //重置完成位
+  return IBias_Mon_Value;                                 //需要做一个变换
 }

@@ -32,3 +32,4 @@ modulecodev0.3\stm32l0xx_it.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal
 modulecodev0.3\stm32l0xx_it.o: ../Inc/stm32l0xx_it.h
 modulecodev0.3\stm32l0xx_it.o: ../Inc/Module_Slave_I2C.h
 modulecodev0.3\stm32l0xx_it.o: ../Inc/utilities.h
+modulecodev0.3\stm32l0xx_it.o: ../Inc/Module_Master_CDR.h

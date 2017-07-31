@@ -38,6 +38,7 @@
 /* USER CODE BEGIN 0 */
 #include "Module_Slave_I2C.h"
 #include "utilities.h"
+#include "Module_Master_CDR.h"
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -131,7 +132,10 @@ void SysTick_Handler(void)
 void EXTI2_3_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI2_3_IRQn 0 */
-
+  if(GetRxLOLPin() == VALUE_SET)
+	{
+		AssertRxLOL();
+	}
   /* USER CODE END EXTI2_3_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
   /* USER CODE BEGIN EXTI2_3_IRQn 1 */
@@ -174,6 +178,17 @@ void EXTI4_15_IRQHandler(void)
 		}
 	}
 	
+	//处理RxLOS中断
+	if(GetRxLOSPin() == VALUE_SET)
+	{
+		AssertRxLOL();
+	}
+	
+	//处理TxLOSLOL中断
+	if(GetTxLOSLOLPin() == VALUE_SET)
+	{
+		AssertTxLOSLOL();
+	}
 	
   /* USER CODE END EXTI4_15_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);

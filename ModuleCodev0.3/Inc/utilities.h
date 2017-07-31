@@ -11,13 +11,22 @@
 void EmptyBuffer(uint8_t* a);
 
 //关于温度的函数
-uint16_t GetTemperature (ADC_HandleTypeDef *hadc);      //获取温度
-void    SetLatchTempHighAlarm(ADC_HandleTypeDef *hadc); //设置高温警告
-uint8_t GetLatchTempHighAlarm(void);                    //获取高温警告
-void    ClearLatchTempHighAlarm(void);                  //清空高温警告
+uint16_t GetTemperature(void);                                //获取温度
+void    SetLatchTempHighAlarm(ADC_HandleTypeDef *hadc);       //设置高温警告
+uint8_t GetLatchTempHighAlarm(void);                          //获取高温警告
+void    ClearLatchTempHighAlarm(void);                        //清空高温警告
+
+//获取RSSI电压的函数
+uint16_t  GetRSSI1(void);                                     //获取RSSI1
+uint16_t  GetRSSI2(void);                                     //获取RSSI2
+uint16_t  GetRSSI3(void);                                     //获取RSSI3
+uint16_t  GetRSSI4(void);                                     //获取RSSI4
+
+//获取IBias电压的函数
+uint16_t  GetIBias(void);
 
 //关于ModselL的函数
-uint8_t IsModSelL(void);                                //检测ModSelL
+uint8_t   IsModSelL(void);                              //检测ModSelL
 
 //关于IntL的函数
 void Assert_IntL(void);                                 //断言IntL

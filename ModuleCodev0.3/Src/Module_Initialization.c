@@ -41,8 +41,7 @@ void Module_Init_Register(void)                             //初始化模块
 	//15-18   保留位
 	//19-21   随意
 	//在utilities中需要这些函数
-	ADC_Update();
-	uint16_t temperature = GetTemperature(&hadc);
+	uint16_t temperature = GetTemperature();
 	Internal_Write_MemMap(22,((uint8_t)(temperature/256)));
 	Internal_Write_MemMap(23,((uint8_t)(temperature & CLEAR_HIGHER_BIT)));
   //22-23   获取温度警告
