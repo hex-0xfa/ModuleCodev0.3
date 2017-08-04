@@ -24,7 +24,7 @@
 "modulecodev0.3\module_master_driver_i2c.o"
 "modulecodev0.3\module_memmap.o"
 "modulecodev0.3\module_slave_i2c.o"
-"modulecodev0.3\utilities.o"
+"modulecodev0.3\module_mcu.o"
 "modulecodev0.3\startup_stm32l052xx.o"
 "modulecodev0.3\system_stm32l0xx.o"
 --library_type=microlib --strict --scatter "ModuleCodev0.3\ModuleCodev0.sct"

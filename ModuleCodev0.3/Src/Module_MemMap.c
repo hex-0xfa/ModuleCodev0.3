@@ -6,7 +6,7 @@
 #include "constant.h"
 #include "stdlib.h"
 #include "Module_Master_CDR.h"
-#include "utilities.h"
+#include "Module_MCU.h"
 #include "Module_Master_Driver_I2C.h"
 
 //v0.3 版 只支持 SFF8636中 定义的最简功能，Memory Map共有256个字节。
@@ -39,20 +39,26 @@ uint8_t Read_MemMap(int Memory_Address)                               //外部读虚
 	{
 		if((*(MemMap_Array + Memory_Address) & 0x01) == 0)                //如果Data_Ready
 		{
-			Deassert_IntL();                                                //反断言 IntL
+			if(WhetherIntL())                                               //是否可以反断言
+      {
+		     Deassert_IntL();                                             //反断言 IntL
+      }
 		}
 	}
 	else if (Memory_Address == (INTERRUPT_FLAG + 1))                    //读到了Tx_Fault的寄存器
 	{
 		*(MemMap_Array + Memory_Address) = GetLatchTxFault();             //获取 Tx_Fault
 		 ClearLatchTxfault();                                             //清除 Tx_Fault
-		 Deassert_IntL();                                                 //反断言 IntL
+
 	}
 	else if(Memory_Address == (INTERRUPT_FLAG + 3))                     //读到了High_Temperature_Alarm
 	{
 	   *(MemMap_Array + Memory_Address) = GetLatchTempHighAlarm();      //获取 High_Temperature_Alarm
 		 ClearLatchTempHighAlarm();                                       //清除 High_Temperature_Alarm
-		 Deassert_IntL();                                                 //反断言 High_Temperature_Alarm
+		 if(WhetherIntL())                                                //是否可以反断言
+     {
+		     Deassert_IntL();                                             //反断言 IntL
+     }
 	}
   return *(MemMap_Array + Memory_Address);                            //返回值
 }

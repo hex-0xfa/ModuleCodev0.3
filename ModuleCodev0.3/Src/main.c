@@ -47,7 +47,7 @@
 #include "Module_MemMap.h"
 #include "Module_Initialization.h"
 #include "Module_Master_CDR.h"
-#include "utilities.h"
+#include "Module_MCU.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -119,6 +119,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		//HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON,PWR_SLEEPENTRY_WFI);    (进入中断唤醒的睡眠模式）
 		//检查温度 
 		//检查提供电压                                 （可选）
 		//检查调制电压                                 （可选）

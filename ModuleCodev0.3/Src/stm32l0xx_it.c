@@ -37,7 +37,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "Module_Slave_I2C.h"
-#include "utilities.h"
+#include "Module_MCU.h"
 #include "Module_Master_CDR.h"
 /* USER CODE END 0 */
 
@@ -132,6 +132,7 @@ void SysTick_Handler(void)
 void EXTI2_3_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI2_3_IRQn 0 */
+	//¥¶¿ÌRxLOL÷–∂œ
   if(GetRxLOLPin() == VALUE_SET)
 	{
 		AssertRxLOL();

@@ -21,13 +21,11 @@
 #define GN2104_ADDRESS_SIZE                   I2C_MEMADD_SIZE_16BIT                 //数据大小
 
 
-void SetLatchTxfault(void);                             //设置 Tx Fault
+void SetLatchTxfault(void);                             //设置 Tx Fault              （未完成）
 
 uint8_t GetLatchTxFault(void);                          //获取 Tx Fault
 
 void ClearLatchTxfault(void);                           //清空 Tx Fault
-
-//以下函数还未实现，将会在调试的时候（v0.3）进行处理
 
 void WakeUpTxCDR_DRIVER(void);                                                             //使TxCDR和Driver从reset模式变为正常工作模式
 
@@ -37,6 +35,7 @@ void DisableTxCDR_DRIVER(void);                                                 
 	
 void DisableRxCDR(void);                                                                   //让RxCDR进入reset模式
 
+//以下函数还未完成，按需添加
 void PowerUp(I2C_HandleTypeDef *hi2c, uint8_t channel);                                    //打开总线和模拟电路电源
 
 void PowerDown(I2C_HandleTypeDef *hi2c, uint8_t channel);                                  //关闭总线和模拟电路电源

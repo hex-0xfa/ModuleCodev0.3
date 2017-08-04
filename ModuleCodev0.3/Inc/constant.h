@@ -25,7 +25,7 @@
 #define PASSWORD_ENTRY_AREA                   123
 #define PAGE_SELECT_BYTE                      127
 
-#define CLEAR_HIGHER_BIT                      0x00FF                      //清楚十六位的上面八位
+#define CLEAR_HIGHER_BIT                      0x00FF                      //清除十六位的上面八位
 
 //各路编号
 #define Tx1   0
@@ -40,6 +40,8 @@
 #define RxAll 9
 #define ChAll 10
 
+//版上芯片I2C等待时间
 #define I2C_WAIT_TIME 2
 
+#define EEPROM_ADDRESS (0x08080000)
 #endif

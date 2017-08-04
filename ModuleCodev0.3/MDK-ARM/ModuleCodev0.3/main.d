@@ -34,4 +34,4 @@ modulecodev0.3\main.o: ../Inc/Module_Slave_I2C.h
 modulecodev0.3\main.o: ../Inc/Module_MemMap.h
 modulecodev0.3\main.o: ../Inc/Module_Initialization.h
 modulecodev0.3\main.o: ../Inc/Module_Master_CDR.h
-modulecodev0.3\main.o: ../Inc/utilities.h
+modulecodev0.3\main.o: ../Inc/Module_MCU.h

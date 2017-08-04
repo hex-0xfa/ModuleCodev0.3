@@ -3,12 +3,24 @@
 
 #include "Module_MemMap.h"
 #include "Module_Initialization.h"
-#include "utilities.h"
+#include "Module_MCU.h"
 #include "constant.h"
 #include "Module_Master_CDR.h"
 
 void Module_Init_Hardware(void)                             //初始化板载硬件
 {
+	WakeUpTxCDR_DRIVER();                                     //复位发送路
+	
+	WakeUpRxCDR();                                            //复位接受路
+	
+	if(IsLPMode() == 0)                                       //如果为0
+	{
+		  NormalPowerMode();                                    //正常功率
+	}
+	else                                                      //如果为1
+	{
+		  LowPowerMode();                                       //低功率
+	}
 	//打开并调试 Tx Driver，检查是否运行正常
 	
   //打开并调试 Tx CDR，检查是否运行正常
@@ -16,11 +28,9 @@ void Module_Init_Hardware(void)                             //初始化板载硬件
   //打开并调试 Rx CDR，检查是否运行正常
 }
 
-
-void Module_Init_Register(void)                             //初始化模块
-
+void Module_Init_Register(void)                    //初始化模块
 {
-	extern ADC_HandleTypeDef hadc;                  //获取外部定义的hadc
+	extern ADC_HandleTypeDef hadc;                   //获取外部定义的hadc
 
 	Data_Not_Ready();                                //数据未准备好
 	
@@ -40,7 +50,7 @@ void Module_Init_Register(void)                             //初始化模块
 	//13-14   TX PWR 预警 （可选） 
 	//15-18   保留位
 	//19-21   随意
-	//在utilities中需要这些函数
+	//在Module_MCU中需要这些函数
 	uint16_t temperature = GetTemperature();
 	Internal_Write_MemMap(22,((uint8_t)(temperature/256)));
 	Internal_Write_MemMap(23,((uint8_t)(temperature & CLEAR_HIGHER_BIT)));

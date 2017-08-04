@@ -30,6 +30,6 @@ modulecodev0.3\module_master_cdr.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0x
 modulecodev0.3\module_master_cdr.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c_ex.h
 modulecodev0.3\module_master_cdr.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_pwr.h
 modulecodev0.3\module_master_cdr.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_pwr_ex.h
-modulecodev0.3\module_master_cdr.o: ../Inc/utilities.h
+modulecodev0.3\module_master_cdr.o: ../Inc/Module_MCU.h
 modulecodev0.3\module_master_cdr.o: ../Inc/constant.h
 modulecodev0.3\module_master_cdr.o: ../Inc/Module_MemMap.h

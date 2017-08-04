@@ -2,7 +2,7 @@
 //这个c文件存放了与 Tx Driver 芯片通信的函数的具体实现
 
 #include "Module_Master_Driver_I2C.h"
-#include "utilities.h"
+#include "Module_MCU.h"
 #include "constant.h"
 
 //一些内部变量

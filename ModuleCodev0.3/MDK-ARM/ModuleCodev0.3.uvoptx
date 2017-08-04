@@ -462,7 +462,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>24</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Src\Module_MemMap.c</PathWithFileName>
@@ -489,8 +489,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Src\utilities.c</PathWithFileName>
-      <FilenameWithoutPath>utilities.c</FilenameWithoutPath>
+      <PathWithFileName>..\Src\Module_MCU.c</PathWithFileName>
+      <FilenameWithoutPath>Module_MCU.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

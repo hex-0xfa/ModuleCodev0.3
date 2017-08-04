@@ -5,7 +5,7 @@
 #include "main.h"
 #include "constant.h"
 #include "Module_MemMap.h"
-#include "utilities.h"
+#include "Module_MCU.h"
 
 #define TXRXBUFFER_SIZE     RW_CHUNK_SIZE+1                            //缓冲区大小
 #define USER_I2C_NO_OPTION_FRAME     (0xFFFF0000U)                     //无FRAME
@@ -82,7 +82,7 @@ static HAL_StatusTypeDef User_I2C_Slave_ISR_IT(struct __I2C_HandleTypeDef *hi2c,
      hi2c->pBuffPtr = TxRxBuffer;                                                       //设置缓冲区指针
      hi2c->XferCount = TXRXBUFFER_SIZE;                                                 //设置缓冲区大小
   }
-  else if(((ITFlags & I2C_FLAG_RXNE) != RESET) && ((ITSources & I2C_IT_RXI) != RESET))  //接收数据已空Flag
+  else if(((ITFlags & I2C_FLAG_RXNE) != RESET) && ((ITSources & I2C_IT_RXI) != RESET))  //接收数据未空Flag
   {
 		 if(hi2c->XferCount != 0)
      {
@@ -111,7 +111,7 @@ static HAL_StatusTypeDef User_I2C_Slave_ISR_IT(struct __I2C_HandleTypeDef *hi2c,
 	  }
       __HAL_I2C_CLEAR_FLAG(hi2c, I2C_FLAG_ADDR);                                         //清空ADDR Flag
   }
-  else if(((ITFlags & I2C_FLAG_TXIS) != RESET) && ((ITSources & I2C_IT_TXI) != RESET))   //传输数据未空Flag
+  else if(((ITFlags & I2C_FLAG_TXIS) != RESET) && ((ITSources & I2C_IT_TXI) != RESET))   //传输数据已空Flag
   {
 	  if(hi2c->XferCount != 0)
     {

@@ -510,9 +510,9 @@
               <FilePath>..\Src\Module_Slave_I2C.c</FilePath>
             </File>
             <File>
-              <FileName>utilities.c</FileName>
+              <FileName>Module_MCU.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Src\utilities.c</FilePath>
+              <FilePath>..\Src\Module_MCU.c</FilePath>
             </File>
           </Files>
         </Group>

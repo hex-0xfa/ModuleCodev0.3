@@ -30,5 +30,5 @@ modulecodev0.3\module_master_driver_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/s
 modulecodev0.3\module_master_driver_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c_ex.h
 modulecodev0.3\module_master_driver_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_pwr.h
 modulecodev0.3\module_master_driver_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_pwr_ex.h
-modulecodev0.3\module_master_driver_i2c.o: ../Inc/utilities.h
+modulecodev0.3\module_master_driver_i2c.o: ../Inc/Module_MCU.h
 modulecodev0.3\module_master_driver_i2c.o: ../Inc/constant.h

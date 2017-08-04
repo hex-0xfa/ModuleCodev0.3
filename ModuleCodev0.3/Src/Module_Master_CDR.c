@@ -3,7 +3,7 @@
 
 #include "Module_Master_CDR.h"
 #include "stm32l0xx_hal.h"
-#include "utilities.h"
+#include "Module_MCU.h"
 #include "constant.h"
 #include "Module_MemMap.h"
 
@@ -108,7 +108,7 @@ void AssertRxLOL(void)                                                          
 void AssertRxLOS(void)                                                                    //调查具体是那一条线失去信号（Rx）
 {
 	
-}
+} 
 
 void AssertTxLOSLOL(void)                                                                 //调查具体是那一条线失去信号或时钟（Tx）
 {

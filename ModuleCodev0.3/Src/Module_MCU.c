@@ -1,7 +1,7 @@
 
 //这个c文件存放了常规函数的具体实现
 
-#include "utilities.h"
+#include "Module_MCU.h"
 #include "constant.h"
 #include "stdint.h"
 #include "stm32l0xx_hal.h"
@@ -98,6 +98,12 @@ void Deassert_IntL(void)               //高电平
 void GetIntL(void)
 {
 	HAL_GPIO_ReadPin(IntL_GPIO_Port, IntL_Pin);
+}
+
+ //是否反断言IntL（按需写，当所有可能的中断都没出现的时候才返回1）
+uint8_t WhetherIntL(void)
+{
+	return 1;
 }
 
 //数据准备完成
@@ -240,4 +246,16 @@ uint16_t  GetIBias(void)
 	while(ADC_Complete == 0){}                              //等待完成
 	ADC_Complete = 0;                                       //重置完成位
   return IBias_Mon_Value;                                 //需要做一个变换
+}
+
+//关于EEPROM的函数
+void Save_Data(uint8_t address, uint8_t word)     //将一个八位的数值写入自带的EEPROM（断电不会丢失）
+{
+	uint8_t* tempP = (uint8_t*)(EEPROM_ADDRESS + address);
+	*tempP = word;
+}
+uint8_t Load_Data(uint8_t address)                //从EEPROM读一个八位的数值
+{
+	uint8_t* tempP = (uint8_t*)(EEPROM_ADDRESS + address);
+	return *tempP;
 }
